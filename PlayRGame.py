@@ -3,51 +3,51 @@ from unidecode import unidecode
 
 
 def play():
-    tentativas = 4
-    acertou = False
+    tries = 4
+    guessed = False
     jogadores_chutados = []
     
     jogador = df.sample()
-    nome = unidecode(jogador['Nome'].to_string(index=False)).lower().split(' ')
-    resposta = jogador['Nome'].to_string(index=False)
-    pos = jogador['Posição'].to_string(index=False)
-    country = jogador['País'].to_string(index=False)
-    club = jogador['Clube'].to_string(index=False)
+    name = unidecode(jogador['Name'].to_string(index=False)).lower().split(' ')
+    answer = jogador['Name'].to_string(index=False)
+    pos = jogador['Position'].to_string(index=False)
+    country = jogador['Country'].to_string(index=False)
+    club = jogador['Club'].to_string(index=False)
     idx = 0
 
-    while not acertou and tentativas > 0:
-        if tentativas == 4:
-            print('Bem vindo ao PlayR! Tente adivinhar o jogador. Somente jogadores da Premier League são válidos.\n')
-            print('Posição: ' + pos)
-        chute = input('\nAdivinhe o Jogador: ').lower()
-        if len(chute) <= 1:
-            print('Seu chute é inválido ou muito curto.')
+    while not guessed and tries > 0:
+        if tries == 4:
+            print('Welcome to PlayR! Try to guess the Premier League footballer.\n')
+            print('Position: ' + pos)
+        guess = input('\nGuess the PlayR: ').lower()
+        if len(guess) <= 1:
+            print('Your guess is invalid or too short.')
 
 
-        if chute in nome:
-            acertou = True
-        elif chute in jogadores_chutados:
-            print('Você já adivinhou esse jogador, tente novamente!')        
+        if guess in name:
+            guessed = True
+        elif guess in jogadores_chutados:
+            print('You already guessed that player, try again!')        
         else:
-            jogadores_chutados.append(chute)    
-            if tentativas > 2:    
-                print('Errado! Aqui vai mais uma dica:\n')
-            if tentativas == 2:
-                print('Última chance!, pense com cuidado.\n')
+            jogadores_chutados.append(guess)    
+            if tries > 2:    
+                print('Wrong! Here goes another tip:\n')
+            if tries == 2:
+                print('Last chance!, think carefully.\n')
 
             if idx == 0:
-                print('Posição: ' + pos)
-                print('País: ' + country)                
+                print('Position: ' + pos)
+                print('Country: ' + country)                
             elif idx == 1:
-                print('Posição: ' + pos)
-                print('País: ' + country)
-                print('Clube: ' + club)
+                print('Position: ' + pos)
+                print('Country: ' + country)
+                print('Club: ' + club)
             idx += 1
-            tentativas -= 1
-    if acertou:
-        print('Parabéns, você acertou!')
+            tries -= 1
+    if guessed:
+        print('Well done, you got it!')
     else:
-        print(f'Acabaram suas chances! o jogador era o {resposta}')
+        print(f'Game over! the PlayR was {answer}')
 
 
 

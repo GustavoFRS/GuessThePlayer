@@ -15,10 +15,10 @@ a_tags = player_table.find_all('a')
 img_tags = player_table.find_all('img')
 div_tags = player_table.find_all('div')
 
-apelidos = [el.text for el in a_tags if '/player/' in el.get('href')]
-nomes = [x.get('aria-label') for x in a_tags if '/player/' in x.get('href')]
-clube = [el.text for el in a_tags if '/team/' in el.get('href')]
-pais = [el.get('title') for el in img_tags if 'flag' in el.get('class')]
+nicknames = [el.text for el in a_tags if '/player/' in el.get('href')]
+names = [x.get('aria-label') for x in a_tags if '/player/' in x.get('href')]
+club = [el.text for el in a_tags if '/team/' in el.get('href')]
+country = [el.get('title') for el in img_tags if 'flag' in el.get('class')]
 
 #Logic for getting position is diffrent because most can play multiple positions, but the first one is his main.    
 posicao = []
@@ -28,8 +28,8 @@ for x in soup.select('td.col-name'):
     if vals != [] and vals != ['On Loan']:
         posicao.append(vals[0])    
         
-zipped = list(zip(apelidos, pais, posicao, clube))
-df = pd.DataFrame(zipped, columns=['Nome', 'País', 'Posição', 'Clube'])
+zipped = list(zip(nicknames, country, posicao, club))
+df = pd.DataFrame(zipped, columns=['Name', 'Country', 'Position', 'Club'])
 
 #Changing from specific to general positions to make the game harder
 general_positions = multi_key_dict()
@@ -40,8 +40,8 @@ general_positions['CB', 'GK'] = 'Defender/Goalkeeper'
 general_positions['RB', 'RWB', 'LB', 'LWB'] = 'Fullback'
 
 
-for position in df['Posição']:
-    df['Posição'] = df['Posição'].replace([position], general_positions[position])
+for position in df['Position']:
+    df['Position'] = df['Position'].replace([position], general_positions[position])
 
 def return_df():
     return df
