@@ -4,7 +4,7 @@ from multi_key_dict import multi_key_dict
 import requests
 import pandas as pd
 
-#Sofifa homepage was chosen as a database due to it being short & dynamic (trending ryday wth transfer gossip, performance, etc.)
+#Sofifa homepage was chosen due to it being short & dynamic (changes daily with transfer gossip, performance, etc.)
 url = 'https://sofifa.com/players?type=all&lg%5B0%5D=13&offset=180'
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'}
 data = requests.get(url, headers=headers)
