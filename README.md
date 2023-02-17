@@ -2,7 +2,7 @@
 
 ## How it works:
 - The program will generate a dataframe from the sofifa.com homepage, filtered to only Premier League players. 
-from top trending PL players, a random one is selected and at each wrong guess a characteristic about the player is given to the user as a tip, 
+from top trending PL players, a random one is selected, and, at each wrong guess a characteristic about the player is given to the user as a tip, 
 starting with his preferred position and with a maximum of 4 guesses per round.
 
 
