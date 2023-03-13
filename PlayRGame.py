@@ -1,11 +1,12 @@
-from data import *
 from unidecode import unidecode
+from utils.data import *
 
 
 def play():
     tries = 4
     guessed = False
     jogadores_chutados = []
+    
     
     jogador = df.sample()
     name = unidecode(jogador['Name'].to_string(index=False)).lower().split(' ')
@@ -51,4 +52,4 @@ def play():
 
 
 
-#play()
+play()
